@@ -39,7 +39,13 @@ class MainActivity : AppCompatActivity() {
 
             val originalBitmap = originalDeferred.await()
 
-            loadImage(originalBitmap)
+            val filterDeferred = coroutineScope.async(Dispatchers.Default) {
+                applyFilter(originalBitmap)
+            }
+
+            val filterBitmap = filterDeferred.await()
+
+            loadImage(filterBitmap)
         }
     }
 
@@ -48,6 +54,8 @@ class MainActivity : AppCompatActivity() {
         .use {
             BitmapFactory.decodeStream(it)
         }
+
+    private fun applyFilter(originalBitmap: Bitmap) = Filter.apply(originalBitmap)
 
     private fun loadImage(bmp: Bitmap) {
         progressBar.visibility = View.GONE
