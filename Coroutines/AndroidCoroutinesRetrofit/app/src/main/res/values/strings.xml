@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Android Coroutines Retrofit</string>
+    <string name="countries_error_label">Error</string>
+    <string name="country_image_description">Country image description</string>
+</resources>
