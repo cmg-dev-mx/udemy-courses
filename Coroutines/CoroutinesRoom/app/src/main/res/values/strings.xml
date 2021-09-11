@@ -1,3 +1,15 @@
 <resources>
     <string name="app_name">Coroutines Room</string>
+    <string name="login_hint_user">User</string>
+    <string name="login_hint_password">Password</string>
+    <string name="login_btn_login">Login</string>
+    <string name="login_btn_signup">Register</string>
+    <string name="signup_hint_user">User</string>
+    <string name="signup_hint_password">Password</string>
+    <string name="signup_hint_otherInfo">Other info</string>
+    <string name="signup_btn_register">Register</string>
+    <string name="signup_btn_login">Return to login</string>
+    <string name="main_title">You\'re now signed as</string>
+    <string name="main_btn_logout">Log out</string>
+    <string name="main_btn_delete">Delete user</string>
 </resources>
