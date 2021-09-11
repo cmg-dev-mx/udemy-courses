@@ -1,7 +1,8 @@
-package mx.dev.shell.android.androidcoroutinesretrofit
+package mx.dev.shell.android.androidcoroutinesretrofit.vm
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import mx.dev.shell.android.androidcoroutinesretrofit.R
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

@@ -12,7 +12,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AndroidCoroutinesRetrofit">
         <activity
-            android:name=".MainActivity"
+            android:name=".vm.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
