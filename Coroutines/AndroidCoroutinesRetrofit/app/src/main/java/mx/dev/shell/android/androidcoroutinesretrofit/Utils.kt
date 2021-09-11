@@ -10,6 +10,5 @@ fun ImageView.loadImage(uri: String?) {
     Glide.with(this.context)
         .setDefaultRequestOptions(options)
         .load(uri)
-        .centerCrop()
         .into(this)
 }
