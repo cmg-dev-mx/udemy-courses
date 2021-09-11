@@ -1,4 +1,4 @@
-package mx.dev.shell.android.androidcoroutinesretrofit.vm
+package mx.dev.shell.android.androidcoroutinesretrofit.view
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -9,7 +9,7 @@ import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import mx.dev.shell.android.androidcoroutinesretrofit.databinding.FragmentCountriesBinding
-import mx.dev.shell.android.androidcoroutinesretrofit.view.CountriesAdapter
+import mx.dev.shell.android.androidcoroutinesretrofit.vm.CountriesViewModel
 
 class CountriesFragment : Fragment() {
 

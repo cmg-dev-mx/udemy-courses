@@ -1,4 +1,4 @@
-package mx.dev.shell.android.androidcoroutinesretrofit.vm
+package mx.dev.shell.android.androidcoroutinesretrofit.view
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
