@@ -15,4 +15,10 @@
     <string name="main_btn_delete">Delete user</string>
     <string name="signup_message_signupComplete">Signup complete!</string>
     <string name="signup_error_message">Error: %1$s</string>
+    <string name="deleteDialog_title">Delete user</string>
+    <string name="deleteDialog_question">Are you sure you want to delete this user?</string>
+    <string name="deleteDialog_btn_accept">Yes</string>
+    <string name="deleteDialog_btn_cancel">Cancel</string>
+    <string name="main_message_logout">Signed out</string>
+    <string name="main_message_userDeleted">User deleted</string>
 </resources>
