@@ -37,7 +37,6 @@ class SignupFragment : Fragment() {
 
     private fun observeViewModel() = viewModel.apply {
         signupComplete.observe(this@SignupFragment as LifecycleOwner) { isComplete ->
-            showMessage(getString(R.string.signup_message_signupComplete))
             val action = SignupFragmentDirections.actionSignupFragmentToMainActivity()
             Navigation.findNavController(binding.signupContainer).navigate(action)
         }

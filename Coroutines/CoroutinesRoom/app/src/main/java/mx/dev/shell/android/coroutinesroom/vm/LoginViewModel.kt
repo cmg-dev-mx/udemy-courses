@@ -43,7 +43,20 @@ class LoginViewModel(application: Application) : AndroidViewModel(application) {
         }
     }
 
-    fun login(user: String, password: String) {
+    fun login(username: String, password: String) {
+        coroutineScope.launch {
+            val user = db.getUser(username)
 
+            if (user == null || user.passwordHash != password.hashCode()) {
+                withContext(Dispatchers.Main) {
+                    error.value = "Wrong credentials"
+                }
+            } else {
+                LoginState.user = user
+                withContext(Dispatchers.Main) {
+                    loginComplete.value = true
+                }
+            }
+        }
     }
 }

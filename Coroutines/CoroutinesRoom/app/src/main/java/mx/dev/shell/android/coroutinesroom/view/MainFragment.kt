@@ -41,11 +41,9 @@ class MainFragment : Fragment() {
 
     private fun observeViewModel() = viewModel.apply {
         logout.observe(this@MainFragment as LifecycleOwner) { logout ->
-            showMessage(getString(R.string.main_message_logout))
             gotoLogin()
         }
         userDeleted.observe(this@MainFragment as LifecycleOwner) { isDeleted ->
-            showMessage(getString(R.string.main_message_userDeleted))
             gotoLogin()
         }
     }

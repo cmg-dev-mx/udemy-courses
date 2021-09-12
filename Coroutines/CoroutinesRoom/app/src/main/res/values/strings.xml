@@ -1,24 +1,35 @@
 <resources>
     <string name="app_name">Coroutines Room</string>
-    <string name="login_hint_user">User</string>
-    <string name="login_hint_password">Password</string>
+
+    <!--Common-->
+    <string name="user">User</string>
+    <string name="password">Password</string>
+    <string name="delete_user">Delete user</string>
+    <string name="error_base">Error: %1$s</string>
+    <string name="error_base_fillFields">Please fill all fields</string>
+
+    <string name="login_hint_user">@string/user</string>
+    <string name="login_hint_password">@string/password</string>
     <string name="login_btn_login">Login</string>
     <string name="login_btn_signup">Register</string>
-    <string name="signup_hint_user">User</string>
-    <string name="signup_hint_password">Password</string>
+
+    <string name="signup_hint_user">@string/user</string>
+    <string name="signup_hint_password">@string/password</string>
     <string name="signup_hint_otherInfo">Other info</string>
     <string name="signup_btn_register">Register</string>
     <string name="signup_btn_login">Return to login</string>
-    <string name="signup_error_fillFields">Please fill all fields</string>
+    <string name="signup_error_fillFields">@string/error_base_fillFields</string>
+    <string name="signup_error_message">@string/error_base</string>
+
     <string name="main_title">You\'re now signed as</string>
     <string name="main_btn_logout">Log out</string>
-    <string name="main_btn_delete">Delete user</string>
-    <string name="signup_message_signupComplete">Signup complete!</string>
-    <string name="signup_error_message">Error: %1$s</string>
-    <string name="deleteDialog_title">Delete user</string>
+    <string name="main_btn_delete">@string/delete_user</string>
+
+    <string name="deleteDialog_title">@string/delete_user</string>
     <string name="deleteDialog_question">Are you sure you want to delete this user?</string>
-    <string name="deleteDialog_btn_accept">Yes</string>
+    <string name="deleteDialog_btn_accept">Accept</string>
     <string name="deleteDialog_btn_cancel">Cancel</string>
-    <string name="main_message_logout">Signed out</string>
-    <string name="main_message_userDeleted">User deleted</string>
+
+    <string name="login_error_fillFields">@string/error_base_fillFields</string>
+    <string name="login_error_message">@string/error_base</string>
 </resources>

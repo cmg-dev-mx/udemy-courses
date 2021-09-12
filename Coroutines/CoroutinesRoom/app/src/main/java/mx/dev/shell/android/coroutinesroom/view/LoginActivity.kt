@@ -2,6 +2,7 @@ package mx.dev.shell.android.coroutinesroom.view
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.WindowManager
 import mx.dev.shell.android.coroutinesroom.R
 
 class LoginActivity : AppCompatActivity() {
