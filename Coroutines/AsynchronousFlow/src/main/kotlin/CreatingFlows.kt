@@ -18,7 +18,7 @@ fun main() {
     }
 }
 
-fun sendNumbers() = flow {
+private fun sendNumbers() = flow {
     for (i in 1..10) {
         emit(i)
     }
