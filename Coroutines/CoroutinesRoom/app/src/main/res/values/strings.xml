@@ -8,11 +8,16 @@
     <string name="error_base">Error: %1$s</string>
     <string name="error_base_fillFields">Please fill all fields</string>
 
+    <!--Login-->
     <string name="login_hint_user">@string/user</string>
     <string name="login_hint_password">@string/password</string>
     <string name="login_btn_login">Login</string>
     <string name="login_btn_signup">Register</string>
+    <string name="login_error_fillFields">@string/error_base_fillFields</string>
+    <string name="login_error_message">@string/error_base</string>
+    <string name="login_error_wrongCredentials">Wrong credentials</string>
 
+    <!--SignUp-->
     <string name="signup_hint_user">@string/user</string>
     <string name="signup_hint_password">@string/password</string>
     <string name="signup_hint_otherInfo">Other info</string>
@@ -20,16 +25,16 @@
     <string name="signup_btn_login">Return to login</string>
     <string name="signup_error_fillFields">@string/error_base_fillFields</string>
     <string name="signup_error_message">@string/error_base</string>
+    <string name="signup_error_userAlreadyExists">User already exists</string>
 
+    <!--Main-->
     <string name="main_title">You\'re now signed as</string>
     <string name="main_btn_logout">Log out</string>
     <string name="main_btn_delete">@string/delete_user</string>
 
+    <!--Dialogs-->
     <string name="deleteDialog_title">@string/delete_user</string>
     <string name="deleteDialog_question">Are you sure you want to delete this user?</string>
     <string name="deleteDialog_btn_accept">Accept</string>
     <string name="deleteDialog_btn_cancel">Cancel</string>
-
-    <string name="login_error_fillFields">@string/error_base_fillFields</string>
-    <string name="login_error_message">@string/error_base</string>
 </resources>

@@ -2,7 +2,7 @@ package mx.dev.shell.android.coroutinesroom.model
 
 object LoginState {
 
-    var isLoggedIn = false
+    private var isLoggedIn = false
     var user: User? = null
 
     fun logout() {

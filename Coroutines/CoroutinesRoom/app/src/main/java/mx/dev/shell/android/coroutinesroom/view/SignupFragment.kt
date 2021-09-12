@@ -4,7 +4,8 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
+import android.view.inputmethod.InputMethodManager
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.ViewModelProvider
@@ -31,21 +32,26 @@ class SignupFragment : Fragment() {
     }
 
     private fun setupListeners() = binding.apply {
-        signupBtnSignup.setOnClickListener { onSignup(it) }
-        signupBtnLogin.setOnClickListener { onGotoLogin(it) }
+        signupBtnSignup.setOnClickListener {
+            hideKeyboard()
+            onSignup()
+        }
+        signupBtnLogin.setOnClickListener {
+            hideKeyboard()
+            gotoLogin()
+        }
     }
 
     private fun observeViewModel() = viewModel.apply {
-        signupComplete.observe(this@SignupFragment as LifecycleOwner) { isComplete ->
-            val action = SignupFragmentDirections.actionSignupFragmentToMainActivity()
-            Navigation.findNavController(binding.signupContainer).navigate(action)
+        signupComplete.observe(this@SignupFragment as LifecycleOwner) {
+            gotoMain()
         }
         error.observe(this@SignupFragment as LifecycleOwner) { error ->
             showMessage(getString(R.string.signup_error_message, error))
         }
     }
 
-    private fun onSignup(v: View) {
+    private fun onSignup() {
         val user = binding.signupTilUser.editText?.text.toString()
         val password = binding.signupTilPassword.editText?.text.toString()
         val info = binding.signupTilOtherInfo.editText?.text.toString()
@@ -58,9 +64,14 @@ class SignupFragment : Fragment() {
 
     }
 
-    private fun onGotoLogin(v: View) {
+    private fun gotoMain() {
+        val action = SignupFragmentDirections.actionSignupFragmentToMainActivity()
+        Navigation.findNavController(binding.signupContainer).navigate(action)
+    }
+
+    private fun gotoLogin() {
         val action = SignupFragmentDirections.actionSignupFragmentToLoginFragment()
-        Navigation.findNavController(v).navigate(action)
+        Navigation.findNavController(binding.signupContainer).navigate(action)
     }
 
     private fun showMessage(message: String) {
@@ -69,5 +80,10 @@ class SignupFragment : Fragment() {
             message,
             Snackbar.LENGTH_SHORT
         ).show()
+    }
+
+    private fun hideKeyboard() {
+        (context?.getSystemService(AppCompatActivity.INPUT_METHOD_SERVICE) as? InputMethodManager)!!
+            .hideSoftInputFromWindow(binding.signupContainer.windowToken, 0)
     }
 }

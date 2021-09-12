@@ -9,7 +9,6 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import mx.dev.shell.android.coroutinesroom.model.LoginState
 import mx.dev.shell.android.coroutinesroom.model.UserDataBase
-import mx.dev.shell.android.coroutinesroom.model.UserDataBase_Impl
 
 class MainViewModel(application: Application): AndroidViewModel(application) {
 

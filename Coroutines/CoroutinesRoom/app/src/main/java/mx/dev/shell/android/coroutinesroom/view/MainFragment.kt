@@ -9,7 +9,6 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
-import com.google.android.material.snackbar.Snackbar
 import mx.dev.shell.android.coroutinesroom.R
 import mx.dev.shell.android.coroutinesroom.databinding.FragmentMainBinding
 import mx.dev.shell.android.coroutinesroom.model.LoginState
@@ -26,33 +25,33 @@ class MainFragment : Fragment() {
     ): View {
         binding = FragmentMainBinding.inflate(layoutInflater, container, false)
         viewModel = ViewModelProvider(this).get(MainViewModel::class.java)
+        setupListeners()
+        observeViewModel()
 
         binding.mainTxtUser.text = LoginState.user?.userName
 
-        setupListeners()
-        observeViewModel()
         return binding.root
     }
 
     private fun setupListeners() = binding.apply {
-        mainBtnLogout.setOnClickListener { onLogout(it) }
-        mainBtnDelete.setOnClickListener { onDelete(it) }
+        mainBtnLogout.setOnClickListener { onLogout() }
+        mainBtnDelete.setOnClickListener { onDelete() }
     }
 
     private fun observeViewModel() = viewModel.apply {
-        logout.observe(this@MainFragment as LifecycleOwner) { logout ->
+        logout.observe(this@MainFragment as LifecycleOwner) {
             gotoLogin()
         }
-        userDeleted.observe(this@MainFragment as LifecycleOwner) { isDeleted ->
+        userDeleted.observe(this@MainFragment as LifecycleOwner) {
             gotoLogin()
         }
     }
 
-    private fun onLogout(v: View) {
+    private fun onLogout() {
         viewModel.logout()
     }
 
-    private fun onDelete(v: View) {
+    private fun onDelete() {
         activity?.let {
             AlertDialog.Builder(it)
                 .setTitle(getString(R.string.deleteDialog_title))
@@ -70,13 +69,5 @@ class MainFragment : Fragment() {
         val action = MainFragmentDirections.actionMainFragmentToLoginActivity()
         Navigation.findNavController(binding.mainContainer)
             .navigate(action)
-    }
-
-    private fun showMessage(message: String) {
-        Snackbar.make(
-            binding.mainContainer,
-            message,
-            Snackbar.LENGTH_SHORT
-        ).show()
     }
 }

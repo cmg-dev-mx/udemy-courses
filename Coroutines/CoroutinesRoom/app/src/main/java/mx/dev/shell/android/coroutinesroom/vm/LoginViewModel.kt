@@ -7,6 +7,7 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import mx.dev.shell.android.coroutinesroom.R
 import mx.dev.shell.android.coroutinesroom.model.LoginState
 import mx.dev.shell.android.coroutinesroom.model.User
 import mx.dev.shell.android.coroutinesroom.model.UserDataBase
@@ -29,7 +30,8 @@ class LoginViewModel(application: Application) : AndroidViewModel(application) {
 
             if (user != null) {
                 withContext(Dispatchers.Main) {
-                    error.value = "User already exists"
+                    error.value =
+                        getApplication<Application>().getString(R.string.signup_error_userAlreadyExists)
                 }
             } else {
                 val newUser = User(username, password.hashCode(), info)
@@ -49,10 +51,11 @@ class LoginViewModel(application: Application) : AndroidViewModel(application) {
 
             if (user == null || user.passwordHash != password.hashCode()) {
                 withContext(Dispatchers.Main) {
-                    error.value = "Wrong credentials"
+                    error.value =
+                        getApplication<Application>().getString(R.string.login_error_wrongCredentials)
                 }
             } else {
-                LoginState.user = user
+                LoginState.login(user)
                 withContext(Dispatchers.Main) {
                     loginComplete.value = true
                 }

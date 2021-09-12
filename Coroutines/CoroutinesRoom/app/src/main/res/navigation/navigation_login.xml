@@ -9,7 +9,7 @@
         android:id="@+id/loginFragment"
         android:name="mx.dev.shell.android.coroutinesroom.view.LoginFragment"
         android:label="fragment_login"
-        tools:layout="@layout/fragment_login" >
+        tools:layout="@layout/fragment_login">
         <action
             android:id="@+id/action_loginFragment_to_signupFragment"
             app:destination="@id/signupFragment" />
@@ -21,7 +21,7 @@
         android:id="@+id/signupFragment"
         android:name="mx.dev.shell.android.coroutinesroom.view.SignupFragment"
         android:label="fragment_signup"
-        tools:layout="@layout/fragment_signup" >
+        tools:layout="@layout/fragment_signup">
         <action
             android:id="@+id/action_signupFragment_to_mainActivity"
             app:destination="@id/mainActivity" />
