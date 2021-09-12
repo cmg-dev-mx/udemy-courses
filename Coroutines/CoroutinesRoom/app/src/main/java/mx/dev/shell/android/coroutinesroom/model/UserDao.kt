@@ -9,10 +9,10 @@ import androidx.room.Query
 interface UserDao  {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insertUser(user: User) : Long
+    suspend fun insertUser(user: User) : Long
 
     @Query("SELECT * FROM user WHERE user_name = :username")
-    fun getUser(username: String): User
+    fun getUser(username: String): User?
 
     @Query("DELETE FROM user WHERE id = :id")
     fun deleteUser(id: Long)

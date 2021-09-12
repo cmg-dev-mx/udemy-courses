@@ -19,19 +19,20 @@ abstract class UserDataBase : RoomDatabase() {
 
         @Volatile
         private var instance: UserDataBase? = null
-        private val LOCK = Any()
 
-        operator fun invoke(context: Context) = instance ?: synchronized(LOCK) {
-            instance ?: buildDatabase(context).also {
-                instance = it
+        fun getInstance(context: Context): UserDataBase {
+            return instance ?: synchronized(this) {
+                instance ?: buildDatabase(context).also {
+                    instance = it
+                }
             }
         }
 
         private fun buildDatabase(context: Context) = Room
             .databaseBuilder(
-                context.applicationContext,
+                context,
                 UserDataBase::class.java,
-                "userDatabase"
+                "user-database"
             ).build()
     }
 }
