@@ -1,7 +1,8 @@
-package mx.dev.shell.android.androidcoroutinesflow
+package mx.dev.shell.android.androidcoroutinesflow.view
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import mx.dev.shell.android.androidcoroutinesflow.R
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
