@@ -17,9 +17,7 @@ class ArticlesFragment : Fragment() {
     private lateinit var binding: FragmentArticlesBinding
     private lateinit var viewModel: ArticlesViewModel
 
-    private val articlesAdapter by lazy {
-        ArticlesAdapter(listOf())
-    }
+    private val articlesAdapter = ArticlesAdapter(arrayListOf())
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -37,7 +35,10 @@ class ArticlesFragment : Fragment() {
 
     private fun observeViewModel() {
         viewModel.articles.observe(this as LifecycleOwner) { article ->
-
+            binding.articlesProgress.visibility = View.GONE
+            binding.articlesRecycler.visibility = View.VISIBLE
+            articlesAdapter.onAddNewsItem(article)
+            binding.articlesRecycler.smoothScrollToPosition(0)
         }
     }
 

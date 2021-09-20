@@ -4,7 +4,7 @@ import com.google.gson.annotations.SerializedName
 
 data class NewsArticle(
     val author: String? = null,
-    val description: String? = null,
+    @SerializedName("desription") val description: String? = null,
     val publishedAt: String? = null,
     val title: String? = null,
     val url: String? = null,
