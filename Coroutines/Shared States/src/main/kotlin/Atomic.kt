@@ -4,9 +4,10 @@ import kotlin.system.measureTimeMillis
 
 fun main() {
     runBlocking {
-        var counter = 0
+
+        var counter = AtomicInteger(0)
         withContext(Dispatchers.Default) {
-            massiveRun { counter++ }
+            massiveRun { counter.incrementAndGet() }
         }
         println("Counter = $counter")
     }
