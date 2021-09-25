@@ -2,6 +2,7 @@ package mx.dev.shell.android.outsideintddexample.unitTest
 
 import junit.framework.TestCase.assertEquals
 import junit.framework.TestCase.assertTrue
+import kotlinx.coroutines.flow.toList
 import kotlinx.coroutines.test.runBlockingTest
 import mx.dev.shell.android.outsideintddexample.Engine
 import mx.dev.shell.android.outsideintddexample.utils.MainCoroutineScopeRule
@@ -23,9 +24,10 @@ class EngineShould {
     }
 
     @Test
-    fun riseTemperatureWhenItTurnsOn() = runBlockingTest {
-        engine.turnOn()
+    fun riseTemperatureGraduallyWhenItTurnsOn() = runBlockingTest {
+        val flow = engine.turnOn()
+        val actual = flow.toList()
 
-        assertEquals(95, engine.temp)
+        assertEquals(listOf(25, 50, 95), actual)
     }
 }
