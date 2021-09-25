@@ -1,8 +1,12 @@
 package mx.dev.shell.android.outsideintddexample
 
-class Engine {
+class Engine(
+    var temp: Int = 15,
+    var isTurnedOn: Boolean = false
+) {
 
     fun turnOn() {
-        TODO("Not yet implemented")
+        isTurnedOn = true
+        temp = 95
     }
 }
