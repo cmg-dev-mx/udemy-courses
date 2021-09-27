@@ -34,7 +34,11 @@ class PlaylistsFragment : Fragment() {
 
     private fun observeViewModel() {
         viewModel.playlists.observe(this as LifecycleOwner) { playlists ->
-            playlistsAdapter.updateList(playlists)
+            if (playlists.getOrNull() != null) {
+                playlistsAdapter.updateList(playlists.getOrNull()!!)
+            } else {
+                // TODO
+            }
         }
     }
 

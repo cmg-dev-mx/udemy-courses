@@ -26,6 +26,9 @@ class PlaylistsFeature {
 
     @Test
     fun displaysPlaylists() {
+        Thread.sleep(4000)
+
+
         onView(withId(R.id.playlists_list_recycler))
             .check(matches(hasChildCount(10)))
         onView(
