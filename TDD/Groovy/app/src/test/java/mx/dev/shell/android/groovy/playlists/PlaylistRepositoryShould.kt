@@ -7,11 +7,13 @@ import kotlinx.coroutines.test.runBlockingTest
 import mx.dev.shell.android.groovy.utils.BaseUnitTest
 import org.junit.Test
 import org.mockito.Mockito.*
+import java.lang.RuntimeException
 
 class PlaylistRepositoryShould: BaseUnitTest() {
 
     private val service = mock(PlaylistService::class.java)
     private val playlists: List<Playlist> = mock(List::class.java) as List<Playlist>
+    private val exception = RuntimeException("Something went wrong")
 
     @Test
     fun getPlaylistsFromService() = runBlockingTest {
@@ -27,6 +29,23 @@ class PlaylistRepositoryShould: BaseUnitTest() {
         val repository = mockSuccessfulCase()
 
         assertEquals(playlists, repository.getPlaylists().first().getOrNull())
+    }
+
+    @Test
+    fun propagateErrors() = runBlockingTest {
+        val repository = mockFailureTest()
+
+        assertEquals(exception, repository.getPlaylists().first().exceptionOrNull())
+    }
+
+    private suspend fun mockFailureTest(): PlaylistRepository {
+        `when`(service.fetchPlaylists()).thenReturn(
+            flow {
+                emit(Result.failure<List<Playlist>>(exception))
+            }
+        )
+
+        return PlaylistRepository(service)
     }
 
     private suspend fun mockSuccessfulCase(): PlaylistRepository {
