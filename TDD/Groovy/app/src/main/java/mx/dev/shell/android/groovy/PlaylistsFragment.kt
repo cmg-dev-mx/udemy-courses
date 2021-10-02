@@ -12,6 +12,9 @@ import mx.dev.shell.android.groovy.databinding.FragmentPlaylistsBinding
 
 class PlaylistsFragment : Fragment() {
 
+    private lateinit var viewModelFactory: PlaylistsViewModelFactory
+    private val repository = PlaylistRepository()
+
     private lateinit var binding: FragmentPlaylistsBinding
     private lateinit var viewModel: PlaylistsViewModel
 
@@ -24,9 +27,7 @@ class PlaylistsFragment : Fragment() {
         binding = FragmentPlaylistsBinding.inflate(inflater, container, false)
 
         setupView()
-
-        viewModel = ViewModelProvider(this).get(PlaylistsViewModel::class.java)
-
+        setupViewModel()
         observeViewModel()
 
         return binding.root
@@ -40,6 +41,12 @@ class PlaylistsFragment : Fragment() {
                 // TODO
             }
         }
+    }
+
+    private fun setupViewModel() {
+        viewModelFactory = PlaylistsViewModelFactory(repository)
+        viewModel = ViewModelProvider(this, viewModelFactory)
+            .get(PlaylistsViewModel::class.java)
     }
 
     private fun setupView() {
