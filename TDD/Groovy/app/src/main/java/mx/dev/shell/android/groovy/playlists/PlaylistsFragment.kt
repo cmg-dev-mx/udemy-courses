@@ -9,10 +9,18 @@ import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import mx.dev.shell.android.groovy.databinding.FragmentPlaylistsBinding
+import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
 
 class PlaylistsFragment : Fragment() {
 
-    private val api = PlaylistApi()
+    private val retrofit = Retrofit.Builder()
+        .baseUrl("http://192.168.0.7:3000/")
+        .addConverterFactory(GsonConverterFactory.create())
+        .build()
+
+    private val api = retrofit.create(PlaylistApi::class.java)
+
     private val service  = PlaylistService(api)
     private lateinit var viewModelFactory: PlaylistsViewModelFactory
     private val repository = PlaylistRepository(service)

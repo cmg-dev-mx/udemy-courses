@@ -3,6 +3,7 @@ package mx.dev.shell.android.groovy.playlists
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import mx.dev.shell.android.groovy.R
 import mx.dev.shell.android.groovy.databinding.ItemPlaylistBinding
 
 class PlaylistsAdapter(private val playlists: ArrayList<Playlist>) :
@@ -31,7 +32,7 @@ class PlaylistsViewHolder(private val binding: ItemPlaylistBinding) :
         binding.apply {
             playlistName.text = playlist.name
             playlistCategory.text = playlist.category
-            playlistImage.setImageResource(playlist.image)
+            playlistImage.setImageResource(R.drawable.playlist)
         }
     }
 }

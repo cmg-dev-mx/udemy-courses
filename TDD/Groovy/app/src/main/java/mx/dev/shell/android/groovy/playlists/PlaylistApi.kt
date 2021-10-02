@@ -1,9 +1,10 @@
 package mx.dev.shell.android.groovy.playlists
 
-class PlaylistApi {
+import retrofit2.http.GET
 
-    fun fetchAllPlaylists(): List<Playlist> {
-        TODO("Not yet implemented")
-    }
+interface PlaylistApi {
+
+    @GET("playlists")
+    suspend fun fetchAllPlaylists(): List<Playlist>
 
 }

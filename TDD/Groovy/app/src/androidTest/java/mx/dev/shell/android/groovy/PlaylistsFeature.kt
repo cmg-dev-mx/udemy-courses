@@ -5,6 +5,8 @@ import androidx.test.espresso.assertion.ViewAssertions.matches
 import androidx.test.espresso.matcher.ViewMatchers.*
 import androidx.test.ext.junit.rules.ActivityScenarioRule
 import androidx.test.ext.junit.runners.AndroidJUnit4
+import com.adevinta.android.barista.assertion.BaristaRecyclerViewAssertions.assertRecyclerViewItemCount
+import com.adevinta.android.barista.assertion.BaristaVisibilityAssertions.assertDisplayed
 import mx.dev.shell.android.groovy.utils.nthChildOf
 import mx.dev.shell.android.groovy.utils.withDrawable
 import org.hamcrest.CoreMatchers.allOf
@@ -20,17 +22,15 @@ class PlaylistsFeature {
 
     @Test
     fun displayScreenTitle() {
-        onView(withText("Playlists"))
-            .check(matches(isDisplayed()))
+        assertDisplayed("Playlists")
     }
 
     @Test
     fun displaysPlaylists() {
         Thread.sleep(4000)
 
+        assertRecyclerViewItemCount(R.id.playlists_list_recycler, 10)
 
-        onView(withId(R.id.playlists_list_recycler))
-            .check(matches(hasChildCount(10)))
         onView(
             allOf(
                 withId(R.id.playlist_name),
@@ -40,14 +40,14 @@ class PlaylistsFeature {
 
         onView(
             allOf(
-                withId(R.id.playlist_name),
+                withId(R.id.playlist_category),
                 isDescendantOfA(nthChildOf(withId(R.id.playlists_list_recycler), 0))))
             .check(matches(withText("rock")))
             .check(matches(isDisplayed()))
 
         onView(
             allOf(
-                withId(R.id.playlist_name),
+                withId(R.id.playlist_image),
                 isDescendantOfA(nthChildOf(withId(R.id.playlists_list_recycler), 0))))
             .check(matches(withDrawable(R.drawable.playlist)))
             .check(matches(isDisplayed()))
