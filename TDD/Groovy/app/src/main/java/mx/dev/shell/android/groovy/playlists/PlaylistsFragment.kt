@@ -12,8 +12,9 @@ import mx.dev.shell.android.groovy.databinding.FragmentPlaylistsBinding
 
 class PlaylistsFragment : Fragment() {
 
+    private val service  = PlaylistService()
     private lateinit var viewModelFactory: PlaylistsViewModelFactory
-    private val repository = PlaylistRepository()
+    private val repository = PlaylistRepository(service)
 
     private lateinit var binding: FragmentPlaylistsBinding
     private lateinit var viewModel: PlaylistsViewModel
