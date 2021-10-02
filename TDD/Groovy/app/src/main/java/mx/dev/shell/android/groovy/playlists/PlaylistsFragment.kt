@@ -12,7 +12,8 @@ import mx.dev.shell.android.groovy.databinding.FragmentPlaylistsBinding
 
 class PlaylistsFragment : Fragment() {
 
-    private val service  = PlaylistService()
+    private val api = PlaylistApi()
+    private val service  = PlaylistService(api)
     private lateinit var viewModelFactory: PlaylistsViewModelFactory
     private val repository = PlaylistRepository(service)
 
