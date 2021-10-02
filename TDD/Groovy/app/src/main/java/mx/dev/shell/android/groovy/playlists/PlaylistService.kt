@@ -6,8 +6,8 @@ import kotlinx.coroutines.flow.flow
 class PlaylistService(val api: PlaylistApi) {
 
     suspend fun fetchPlaylists(): Flow<Result<List<Playlist>>> {
-        api.fetchAllPlaylists()
-
-        return flow {  }
+        return flow {
+            emit(Result.success(api.fetchAllPlaylists()))
+        }
     }
 }
