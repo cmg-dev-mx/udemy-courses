@@ -1,4 +1,4 @@
-package mx.dev.shell.android.groovy
+package mx.dev.shell.android.groovy.playlists
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment

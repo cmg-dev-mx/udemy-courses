@@ -1,4 +1,6 @@
-package mx.dev.shell.android.groovy
+package mx.dev.shell.android.groovy.playlists
+
+import mx.dev.shell.android.groovy.R
 
 data class Playlist(
     val id: String,

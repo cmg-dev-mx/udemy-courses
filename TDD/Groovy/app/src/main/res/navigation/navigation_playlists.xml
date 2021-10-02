@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/playlistsFragment"
-        android:name="mx.dev.shell.android.groovy.PlaylistsFragment"
+        android:name="mx.dev.shell.android.groovy.playlists.PlaylistsFragment"
         android:label="fragment_playlists"
         tools:layout="@layout/fragment_playlists" />
 </navigation>

@@ -1,4 +1,4 @@
-package mx.dev.shell.android.groovy
+package mx.dev.shell.android.groovy.playlists
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
