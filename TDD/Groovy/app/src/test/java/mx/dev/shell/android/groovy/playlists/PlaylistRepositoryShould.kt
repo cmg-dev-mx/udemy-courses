@@ -1,6 +1,7 @@
 package mx.dev.shell.android.groovy.playlists
 
 import junit.framework.TestCase.assertEquals
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.test.runBlockingTest
@@ -9,6 +10,7 @@ import org.junit.Test
 import org.mockito.Mockito.*
 import java.lang.RuntimeException
 
+@ExperimentalCoroutinesApi
 class PlaylistRepositoryShould: BaseUnitTest() {
 
     private val service = mock(PlaylistService::class.java)
