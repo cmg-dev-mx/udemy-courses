@@ -20,10 +20,6 @@ class PlaylistsViewModelShould: BaseUnitTest() {
     private val expected = Result.success(playlists)
     private val exception = RuntimeException("Something went wrong")
 
-    init {
-
-    }
-
     @Test
     fun getPlaylistsFromRepository() = runBlockingTest {
         val viewModel = mockupSuccessfulCase()
@@ -56,6 +52,16 @@ class PlaylistsViewModelShould: BaseUnitTest() {
         }
     }
 
+    @Test
+    fun closeLoaderAfterPlaylistsLoad() = runBlockingTest {
+        val viewModel = mockupSuccessfulCase()
+
+        viewModel.loader.captureValues {
+            viewModel.playlists.getValueForTest()
+
+            assertEquals(false, values.last())
+        }
+    }
 
     private fun mockupFailureCase(): PlaylistsViewModel {
         runBlocking {

@@ -7,6 +7,7 @@ import androidx.test.ext.junit.rules.ActivityScenarioRule
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.adevinta.android.barista.assertion.BaristaRecyclerViewAssertions.assertRecyclerViewItemCount
 import com.adevinta.android.barista.assertion.BaristaVisibilityAssertions.assertDisplayed
+import com.adevinta.android.barista.assertion.BaristaVisibilityAssertions.assertNotDisplayed
 import mx.dev.shell.android.groovy.utils.nthChildOf
 import mx.dev.shell.android.groovy.utils.withDrawable
 import org.hamcrest.CoreMatchers.allOf
@@ -56,5 +57,29 @@ class PlaylistsFeature {
     @Test
     fun displaysLoaderWhileFetchingPlaylists() {
         assertDisplayed(R.id.playlists_loader)
+    }
+
+    @Test
+    fun hidesLoader() {
+        Thread.sleep(4000)
+
+        assertNotDisplayed(R.id.playlists_loader)
+    }
+
+    @Test
+    fun displaysRockImageForRockListItems() {
+        onView(
+            allOf(
+                withId(R.id.playlist_image),
+                isDescendantOfA(nthChildOf(withId(R.id.playlists_list_recycler), 0))))
+            .check(matches(withDrawable(R.drawable.rock)))
+            .check(matches(isDisplayed()))
+
+        onView(
+            allOf(
+                withId(R.id.playlist_image),
+                isDescendantOfA(nthChildOf(withId(R.id.playlists_list_recycler), 3))))
+            .check(matches(withDrawable(R.drawable.rock)))
+            .check(matches(isDisplayed()))
     }
 }
