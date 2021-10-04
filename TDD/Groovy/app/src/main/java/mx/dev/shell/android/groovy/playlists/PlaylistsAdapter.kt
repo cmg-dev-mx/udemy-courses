@@ -32,7 +32,7 @@ class PlaylistsViewHolder(private val binding: ItemPlaylistBinding) :
         binding.apply {
             playlistName.text = playlist.name
             playlistCategory.text = playlist.category
-            playlistImage.setImageResource(R.drawable.playlist)
+            playlistImage.setImageResource(playlist.image)
         }
     }
 }

@@ -12,7 +12,7 @@ import java.lang.RuntimeException
 @ExperimentalCoroutinesApi
 class PlaylistServiceShould : BaseUnitTest() {
 
-    private val playlists: List<Playlist> = mock(List::class.java) as List<Playlist>
+    private val playlists: List<PlaylistRaw> = mock(List::class.java) as List<PlaylistRaw>
     private val api = mock(PlaylistApi::class.java)
 
     @Test

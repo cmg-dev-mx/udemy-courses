@@ -49,7 +49,7 @@ class PlaylistsFeature {
         onView(
             allOf(
                 withId(R.id.playlist_image),
-                isDescendantOfA(nthChildOf(withId(R.id.playlists_list_recycler), 0))))
+                isDescendantOfA(nthChildOf(withId(R.id.playlists_list_recycler), 1))))
             .check(matches(withDrawable(R.drawable.playlist)))
             .check(matches(isDisplayed()))
     }
@@ -68,6 +68,8 @@ class PlaylistsFeature {
 
     @Test
     fun displaysRockImageForRockListItems() {
+        Thread.sleep(4000)
+
         onView(
             allOf(
                 withId(R.id.playlist_image),
