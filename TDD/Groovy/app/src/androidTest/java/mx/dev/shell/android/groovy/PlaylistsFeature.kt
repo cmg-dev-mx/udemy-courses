@@ -51,7 +51,10 @@ class PlaylistsFeature {
                 isDescendantOfA(nthChildOf(withId(R.id.playlists_list_recycler), 0))))
             .check(matches(withDrawable(R.drawable.playlist)))
             .check(matches(isDisplayed()))
+    }
 
-
+    @Test
+    fun displaysLoaderWhileFetchingPlaylists() {
+        assertDisplayed(R.id.playlists_loader)
     }
 }

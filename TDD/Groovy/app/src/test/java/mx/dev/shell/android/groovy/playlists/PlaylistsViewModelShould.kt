@@ -6,6 +6,7 @@ import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.test.runBlockingTest
 import mx.dev.shell.android.groovy.utils.BaseUnitTest
+import mx.dev.shell.android.groovy.utils.captureValues
 import mx.dev.shell.android.groovy.utils.getValueForTest
 import org.junit.Test
 import org.mockito.Mockito.*
@@ -38,11 +39,23 @@ class PlaylistsViewModelShould: BaseUnitTest() {
     }
 
     @Test
-    fun emitErrorWhenReceiveError() {
+    fun emitErrorWhenReceiveError() = runBlockingTest {
         val viewModel = mockupFailureCase()
 
         assertEquals(exception, viewModel.playlists.getValueForTest()!!.exceptionOrNull())
     }
+
+    @Test
+    fun showSpinnerWhileDoading() = runBlockingTest {
+        val viewModel = mockupSuccessfulCase()
+
+        viewModel.loader.captureValues {
+            viewModel.playlists.getValueForTest()
+
+            assertEquals(true, values[0])
+        }
+    }
+
 
     private fun mockupFailureCase(): PlaylistsViewModel {
         runBlocking {
@@ -52,8 +65,7 @@ class PlaylistsViewModelShould: BaseUnitTest() {
                 }
             )
         }
-        val viewModel = PlaylistsViewModel(repository)
-        return viewModel
+        return PlaylistsViewModel(repository)
     }
 
     private fun mockupSuccessfulCase(): PlaylistsViewModel {
