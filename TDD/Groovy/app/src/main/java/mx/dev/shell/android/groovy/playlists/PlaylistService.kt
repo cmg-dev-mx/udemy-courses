@@ -4,8 +4,9 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.flow
 import java.lang.RuntimeException
+import javax.inject.Inject
 
-class PlaylistService(val api: PlaylistApi) {
+class PlaylistService @Inject constructor(private val api: PlaylistApi) {
 
     suspend fun fetchPlaylists(): Flow<Result<List<Playlist>>> {
         return flow {

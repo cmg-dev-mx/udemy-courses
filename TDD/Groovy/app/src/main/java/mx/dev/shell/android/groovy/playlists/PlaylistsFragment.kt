@@ -8,22 +8,17 @@ import android.view.ViewGroup
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
+import dagger.hilt.android.AndroidEntryPoint
 import mx.dev.shell.android.groovy.databinding.FragmentPlaylistsBinding
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import javax.inject.Inject
 
+@AndroidEntryPoint
 class PlaylistsFragment : Fragment() {
 
-    private val retrofit = Retrofit.Builder()
-        .baseUrl("http://192.168.0.7:3000/")
-        .addConverterFactory(GsonConverterFactory.create())
-        .build()
-
-    private val api = retrofit.create(PlaylistApi::class.java)
-
-    private val service  = PlaylistService(api)
-    private lateinit var viewModelFactory: PlaylistsViewModelFactory
-    private val repository = PlaylistRepository(service)
+    @Inject
+    lateinit var viewModelFactory: PlaylistsViewModelFactory
 
     private lateinit var binding: FragmentPlaylistsBinding
     private lateinit var viewModel: PlaylistsViewModel
@@ -54,7 +49,6 @@ class PlaylistsFragment : Fragment() {
     }
 
     private fun setupViewModel() {
-        viewModelFactory = PlaylistsViewModelFactory(repository)
         viewModel = ViewModelProvider(this, viewModelFactory)
             .get(PlaylistsViewModel::class.java)
     }

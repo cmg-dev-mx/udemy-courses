@@ -1,6 +1,10 @@
 package mx.dev.shell.android.groovy.playlists
 
-class PlaylistRepository(val service: PlaylistService) {
+import javax.inject.Inject
+
+class PlaylistRepository @Inject constructor(
+    private val service: PlaylistService
+) {
 
     suspend fun getPlaylists() = service.fetchPlaylists()
 }

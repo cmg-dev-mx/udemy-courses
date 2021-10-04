@@ -2,8 +2,9 @@ package mx.dev.shell.android.groovy.playlists
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import javax.inject.Inject
 
-class PlaylistsViewModelFactory(
+class PlaylistsViewModelFactory @Inject constructor(
     private val repository: PlaylistRepository
 ) : ViewModelProvider.Factory {
 
