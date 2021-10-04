@@ -1,6 +1,7 @@
 package mx.dev.shell.android.groovy
 
 import androidx.test.espresso.Espresso.onView
+import androidx.test.espresso.IdlingRegistry
 import androidx.test.espresso.assertion.ViewAssertions.matches
 import androidx.test.espresso.matcher.ViewMatchers.*
 import androidx.test.ext.junit.rules.ActivityScenarioRule
@@ -8,6 +9,8 @@ import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.adevinta.android.barista.assertion.BaristaRecyclerViewAssertions.assertRecyclerViewItemCount
 import com.adevinta.android.barista.assertion.BaristaVisibilityAssertions.assertDisplayed
 import com.adevinta.android.barista.assertion.BaristaVisibilityAssertions.assertNotDisplayed
+import mx.dev.shell.android.groovy.playlists.idlingResource
+import mx.dev.shell.android.groovy.utils.BaseUiTest
 import mx.dev.shell.android.groovy.utils.nthChildOf
 import mx.dev.shell.android.groovy.utils.withDrawable
 import org.hamcrest.CoreMatchers.allOf
@@ -16,7 +19,7 @@ import org.junit.Test
 import org.junit.runner.RunWith
 
 @RunWith(AndroidJUnit4::class)
-class PlaylistsFeature {
+class PlaylistsFeature: BaseUiTest() {
 
     @get:Rule
     var rule = ActivityScenarioRule(MainActivity::class.java)
@@ -28,8 +31,6 @@ class PlaylistsFeature {
 
     @Test
     fun displaysPlaylists() {
-        Thread.sleep(4000)
-
         assertRecyclerViewItemCount(R.id.playlists_list_recycler, 10)
 
         onView(
@@ -56,20 +57,18 @@ class PlaylistsFeature {
 
     @Test
     fun displaysLoaderWhileFetchingPlaylists() {
+        IdlingRegistry.getInstance()
+            .unregister(idlingResource)
         assertDisplayed(R.id.playlists_loader)
     }
 
     @Test
     fun hidesLoader() {
-        Thread.sleep(4000)
-
         assertNotDisplayed(R.id.playlists_loader)
     }
 
     @Test
     fun displaysRockImageForRockListItems() {
-        Thread.sleep(4000)
-
         onView(
             allOf(
                 withId(R.id.playlist_image),
