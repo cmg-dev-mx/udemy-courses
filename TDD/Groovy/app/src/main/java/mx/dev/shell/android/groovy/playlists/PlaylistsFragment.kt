@@ -43,18 +43,25 @@ class PlaylistsFragment : Fragment() {
     }
 
     private fun observeViewModel() {
+        observePlaylists()
+        observeLoader()
+    }
+
+    private fun observeLoader() {
+        viewModel.loader.observe(this as LifecycleOwner) { loading ->
+            when (loading) {
+                true -> binding.playlistsLoader.visibility = View.VISIBLE
+                false -> binding.playlistsLoader.visibility = View.GONE
+            }
+        }
+    }
+
+    private fun observePlaylists() {
         viewModel.playlists.observe(this as LifecycleOwner) { playlists ->
             if (playlists.getOrNull() != null) {
                 playlistsAdapter.updateList(playlists.getOrNull()!!)
             } else {
                 // TODO
-            }
-        }
-
-        viewModel.loader.observe(this as LifecycleOwner) { loading ->
-            when(loading) {
-                true -> binding.playlistsLoader.visibility = View.VISIBLE
-                false -> binding.playlistsLoader.visibility = View.GONE
             }
         }
     }
