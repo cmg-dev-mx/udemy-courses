@@ -6,8 +6,10 @@ import androidx.recyclerview.widget.RecyclerView
 import mx.dev.shell.android.groovy.R
 import mx.dev.shell.android.groovy.databinding.ItemPlaylistBinding
 
-class PlaylistsAdapter(private val playlists: ArrayList<Playlist>) :
-    RecyclerView.Adapter<PlaylistsViewHolder>() {
+class PlaylistsAdapter(
+    private val playlists: ArrayList<Playlist>,
+    private val listener: (String) -> Unit
+) : RecyclerView.Adapter<PlaylistsAdapter.PlaylistsViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) = PlaylistsViewHolder(
         ItemPlaylistBinding.inflate(LayoutInflater.from(parent.context), parent, false)
@@ -23,16 +25,18 @@ class PlaylistsAdapter(private val playlists: ArrayList<Playlist>) :
         playlists.addAll(newPlaylists)
         notifyDataSetChanged()
     }
-}
 
-class PlaylistsViewHolder(private val binding: ItemPlaylistBinding) :
-    RecyclerView.ViewHolder(binding.root) {
+    inner class PlaylistsViewHolder(private val binding: ItemPlaylistBinding) :
+        RecyclerView.ViewHolder(binding.root) {
 
-    fun bind(playlist: Playlist) {
-        binding.apply {
-            playlistName.text = playlist.name
-            playlistCategory.text = playlist.category
-            playlistImage.setImageResource(playlist.image)
+        fun bind(playlist: Playlist) {
+            binding.apply {
+                playlistName.text = playlist.name
+                playlistCategory.text = playlist.category
+                playlistImage.setImageResource(playlist.image)
+
+                playlistItemContainer.setOnClickListener { listener(playlist.id) }
+            }
         }
     }
 }

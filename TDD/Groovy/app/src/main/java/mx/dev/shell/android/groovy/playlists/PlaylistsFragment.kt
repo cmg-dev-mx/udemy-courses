@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import dagger.hilt.android.AndroidEntryPoint
 import mx.dev.shell.android.groovy.databinding.FragmentPlaylistsBinding
@@ -23,7 +24,10 @@ class PlaylistsFragment : Fragment() {
     private lateinit var binding: FragmentPlaylistsBinding
     private lateinit var viewModel: PlaylistsViewModel
 
-    private val playlistsAdapter = PlaylistsAdapter(arrayListOf())
+    private val playlistsAdapter = PlaylistsAdapter(arrayListOf()) { id ->
+        val action = PlaylistsFragmentDirections.actionPlaylistsFragmentToPlaylistDetailFragment(id)
+        findNavController().navigate(action)
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
