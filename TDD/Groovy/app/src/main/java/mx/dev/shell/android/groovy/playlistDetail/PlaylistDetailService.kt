@@ -1,8 +1,10 @@
 package mx.dev.shell.android.groovy.playlistDetail
 
+import kotlinx.coroutines.flow.Flow
+
 class PlaylistDetailService {
 
-    fun fetchPlaylistDetail(id: String) {
+    suspend fun fetchPlaylistDetail(id: String): Flow<Result<PlaylistDetail>> {
         TODO("Not yet implemented")
     }
 }
