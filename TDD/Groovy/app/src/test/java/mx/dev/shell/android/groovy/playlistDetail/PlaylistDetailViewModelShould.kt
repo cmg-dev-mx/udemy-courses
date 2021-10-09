@@ -8,6 +8,7 @@ import mx.dev.shell.android.groovy.utils.BaseUnitTest
 import mx.dev.shell.android.groovy.utils.getValueForTest
 import org.junit.Test
 import org.mockito.Mockito.*
+import java.lang.RuntimeException
 
 @ExperimentalCoroutinesApi
 class PlaylistDetailViewModelShould: BaseUnitTest() {
@@ -16,6 +17,7 @@ class PlaylistDetailViewModelShould: BaseUnitTest() {
     private val service = mock(PlaylistDetailService::class.java)
     private val playlistDetail = mock(PlaylistDetail::class.java)
     private val expected = Result.success(playlistDetail)
+    private val exception = RuntimeException("Something went wrong")
 
     @Test
     fun getPlaylistDetailFromService() = runBlockingTest {
@@ -32,6 +34,22 @@ class PlaylistDetailViewModelShould: BaseUnitTest() {
         viewModel.getPlaylistDetail(id)
 
         assertEquals(expected, viewModel.playlistDetail.getValueForTest())
+    }
+
+    @Test
+    fun emitsErrorWhenServiceFails() = runBlockingTest {
+        val viewModel = mockFailureCase()
+        viewModel.getPlaylistDetail(id)
+
+        assertEquals(exception, viewModel.playlistDetail.getValueForTest()!!.exceptionOrNull())
+    }
+
+    private suspend fun mockFailureCase(): PlaylistDetailViewModel {
+        `when`(service.fetchPlaylistDetail(id)).thenReturn(
+            flow { emit(Result.failure<PlaylistDetail>(exception)) }
+        )
+
+        return PlaylistDetailViewModel(service)
     }
 
     private suspend fun mockSuccessfulCase(): PlaylistDetailViewModel {

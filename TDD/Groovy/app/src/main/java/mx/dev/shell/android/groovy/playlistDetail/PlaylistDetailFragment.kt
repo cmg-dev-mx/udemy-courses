@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.navArgs
+import dagger.hilt.android.AndroidEntryPoint
 import mx.dev.shell.android.groovy.R
 import mx.dev.shell.android.groovy.databinding.FragmentPlaylistDetailBinding
 import mx.dev.shell.android.groovy.databinding.FragmentPlaylistsBinding
@@ -15,6 +16,7 @@ import mx.dev.shell.android.groovy.playlists.Playlist
 import mx.dev.shell.android.groovy.playlists.PlaylistsViewModel
 import javax.inject.Inject
 
+@AndroidEntryPoint
 class PlaylistDetailFragment : Fragment() {
 
     private val args: PlaylistDetailFragmentArgs by navArgs()
