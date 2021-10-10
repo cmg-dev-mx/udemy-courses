@@ -40,8 +40,18 @@ class PlaylistDetailFragment : Fragment() {
         viewModel.getPlaylistDetail(id)
 
         observePlaylistDetail()
+        observeLoader()
 
         return binding.root
+    }
+
+    private fun observeLoader() {
+        viewModel.loader.observe(this as LifecycleOwner) { loading ->
+            when (loading) {
+                true -> binding.playlistDetailLoader.visibility = View.VISIBLE
+                else -> binding.playlistDetailLoader.visibility = View.GONE
+            }
+        }
     }
 
     private fun observePlaylistDetail() {

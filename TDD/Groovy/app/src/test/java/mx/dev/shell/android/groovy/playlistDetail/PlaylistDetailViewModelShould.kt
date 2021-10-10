@@ -5,6 +5,7 @@ import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.test.runBlockingTest
 import mx.dev.shell.android.groovy.utils.BaseUnitTest
+import mx.dev.shell.android.groovy.utils.captureValues
 import mx.dev.shell.android.groovy.utils.getValueForTest
 import org.junit.Test
 import org.mockito.Mockito.*
@@ -43,6 +44,31 @@ class PlaylistDetailViewModelShould: BaseUnitTest() {
 
         assertEquals(exception, viewModel.playlistDetail.getValueForTest()!!.exceptionOrNull())
     }
+
+    @Test
+    fun showLoaderWhileLoading() = runBlockingTest {
+        val viewModel = mockSuccessfulCase()
+
+        viewModel.loader.captureValues {
+            viewModel.getPlaylistDetail(id)
+            viewModel.playlistDetail.getValueForTest()
+
+            assertEquals(true, values[0])
+        }
+    }
+
+    @Test
+    fun hideLoaderAfterPlaylistDetailDoad() = runBlockingTest {
+        val viewModel = mockSuccessfulCase()
+
+        viewModel.loader.captureValues {
+            viewModel.getPlaylistDetail(id)
+            viewModel.playlistDetail.getValueForTest()
+
+            assertEquals(false, values.last())
+        }
+    }
+
 
     private suspend fun mockFailureCase(): PlaylistDetailViewModel {
         `when`(service.fetchPlaylistDetail(id)).thenReturn(
