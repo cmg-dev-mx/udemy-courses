@@ -7,6 +7,7 @@ import androidx.test.espresso.matcher.ViewMatchers.isDescendantOfA
 import androidx.test.espresso.matcher.ViewMatchers.withId
 import com.adevinta.android.barista.assertion.BaristaVisibilityAssertions.assertDisplayed
 import com.adevinta.android.barista.assertion.BaristaVisibilityAssertions.assertNotDisplayed
+import com.adevinta.android.barista.assertion.BaristaVisibilityAssertions.assertNotExist
 import mx.dev.shell.android.groovy.playlists.idlingResource
 import mx.dev.shell.android.groovy.utils.BaseUiTest
 import mx.dev.shell.android.groovy.utils.nthChildOf
@@ -38,6 +39,21 @@ class PlaylistDetailFeature: BaseUiTest() {
         navigateToPlaylistDetail(0)
 
         assertNotDisplayed(R.id.playlist_detail_loader)
+    }
+
+    @Test
+    fun displayErrorMessagesWhenNetworkFails() {
+        navigateToPlaylistDetail(1)
+
+        assertDisplayed(R.string.generic_error)
+    }
+
+    @Test
+    fun hidesErrorMessages() {
+        navigateToPlaylistDetail(1)
+
+        Thread.sleep(3000)
+        assertNotExist(R.string.generic_error)
     }
 
     private fun navigateToPlaylistDetail(childPosition: Int) {

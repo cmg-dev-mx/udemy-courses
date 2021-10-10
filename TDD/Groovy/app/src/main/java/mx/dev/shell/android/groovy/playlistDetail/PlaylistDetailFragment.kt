@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.navArgs
+import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
 import mx.dev.shell.android.groovy.R
 import mx.dev.shell.android.groovy.databinding.FragmentPlaylistDetailBinding
@@ -59,7 +60,8 @@ class PlaylistDetailFragment : Fragment() {
             if (playlist.getOrNull() != null) {
                 setupContent(playlist.getOrNull()!!)
             } else {
-                // TODO
+                Snackbar.make(binding.playlistContainer, R.string.generic_error, Snackbar.LENGTH_LONG)
+                    .show()
             }
         }
     }
