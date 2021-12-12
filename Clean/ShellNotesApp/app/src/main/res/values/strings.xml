@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name">Notes App</string>
+    <string name="item_note_lastUpdateMessage">Last update: %1$s</string>
+    <string name="notes_noItems">Without notes. To add one,\npush the + button.</string>
+    <string name="notes_add_button_description">Add note</string>
+    <string name="note_title_hint">Title</string>
+    <string name="note_content_hint">Content</string>
+    <string name="note_save_btn">Save</string>
+    <string name="note_cancel_title">Cancel</string>
+    <string name="note_title">New note</string>
+    <string name="note_saveSuccess_message">Note saved!</string>
+    <string name="note_title_edit">Edit note</string>
+    <string name="note_delete_button_description">Delete note</string>
+    <string name="deleteNote_message">Are you sure do you want to delete the note?</string>
+    <string name="deleteNote_accept_btn">Accept</string>
+    <string name="deleteNote_cancel_btn">Cancel</string>
+    <string name="note_deleteSuccess_message">Note deleted successfully</string>
+</resources>

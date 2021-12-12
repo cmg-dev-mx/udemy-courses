@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/notes_navigation"
+    app:startDestination="@id/notesFragment">
+
+    <fragment
+        android:id="@+id/notesFragment"
+        android:name="mx.dev.shell.android.shellnotesapp.app.flow.notes.layout.NotesFragment"
+        android:label="fragment_notes"
+        tools:layout="@layout/fragment_notes">
+        <action
+            android:id="@+id/action_notesFragment_to_noteFragment"
+            app:destination="@id/noteFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/noteFragment"
+        android:name="mx.dev.shell.android.shellnotesapp.app.flow.notes.layout.NoteFragment"
+        android:label="fragment_note"
+        tools:layout="@layout/fragment_note">
+        <argument
+            android:name="noteId"
+            app:argType="long" />
+    </fragment>
+</navigation>
