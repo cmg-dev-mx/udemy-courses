@@ -5,12 +5,17 @@ import androidx.test.espresso.action.ViewActions.*
 import androidx.test.espresso.assertion.ViewAssertions.doesNotExist
 import androidx.test.espresso.matcher.ViewMatchers.*
 import com.adevinta.android.barista.assertion.BaristaVisibilityAssertions.assertDisplayed
+import com.adevinta.android.barista.assertion.BaristaVisibilityAssertions.assertNotDisplayed
 import mx.dev.shell.android.shellnotesapp.R
+import mx.dev.shell.android.shellnotesapp.utils.BaseUiTest
 import mx.dev.shell.android.shellnotesapp.utils.nthChildOf
 import org.hamcrest.CoreMatchers.allOf
+import org.junit.FixMethodOrder
 import org.junit.Test
+import org.junit.runners.MethodSorters
 
-class DeleteFromNotesFeature {
+@FixMethodOrder(MethodSorters.NAME_ASCENDING)
+class DeleteFromNotesFeature : BaseUiTest() {
 
     @Test
     fun test01_showDeleteNoteWhenSelectNote() {
@@ -47,7 +52,7 @@ class DeleteFromNotesFeature {
         createNote("Nota a borrar 3", "Descripcion de la nota")
         gotoDetail()
         onView(withId(android.R.id.button1)).perform(click())
-        onView(withText("Nota a borrar 3")).check(doesNotExist())
+        assertNotDisplayed("Nota a borrar 3")
     }
 
     private fun gotoDetail() {

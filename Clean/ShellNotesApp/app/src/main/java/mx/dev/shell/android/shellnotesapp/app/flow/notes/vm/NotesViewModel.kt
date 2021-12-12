@@ -31,12 +31,12 @@ class NotesViewModel @Inject constructor(
                 .collect {
                     if (it.isSuccess) {
                         val list = it.getOrNull()!!
+                        notes.postValue(list)
                         if (list.isEmpty()) {
                             showEmptyMessage.postValue(true)
                             showList.postValue(false)
                         } else {
                             showEmptyMessage.postValue(false)
-                            notes.postValue(list)
                             showList.postValue(true)
                         }
                     } else {
