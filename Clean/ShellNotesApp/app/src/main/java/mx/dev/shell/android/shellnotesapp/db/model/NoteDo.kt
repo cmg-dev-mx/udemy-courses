@@ -1,17 +1,13 @@
 package mx.dev.shell.android.shellnotesapp.db.model
 
-import androidx.room.ColumnInfo
-import androidx.room.Entity
-import androidx.room.PrimaryKey
+import io.realm.RealmObject
+import io.realm.annotations.PrimaryKey
+import java.util.*
 
-@Entity(tableName = "note")
-data class NoteDo(
-    @ColumnInfo(name = "note_title")
-    var title: String,
-    @ColumnInfo(name = "note_content")
-    var content: String,
-    @ColumnInfo(name = "note_last_update")
-    var lastUpdate: Long,
-    @PrimaryKey(autoGenerate = true)
-    var id: Long = 0L
-)
+open class NoteDo(
+    var title: String = "",
+    var content: String = "",
+    var lastUpdate: Long = 0L,
+    @PrimaryKey
+    var id: Long = Date().time
+) : RealmObject()

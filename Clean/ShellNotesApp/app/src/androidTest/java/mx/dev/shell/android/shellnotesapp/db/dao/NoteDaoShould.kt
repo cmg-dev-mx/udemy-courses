@@ -1,14 +1,12 @@
 package mx.dev.shell.android.shellnotesapp.db.dao
 
-import androidx.room.Room
-import androidx.test.core.app.ApplicationProvider
 import androidx.test.ext.junit.rules.ActivityScenarioRule
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.filters.SmallTest
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.runBlocking
 import mx.dev.shell.android.shellnotesapp.app.flow.notes.MainActivity
-import mx.dev.shell.android.shellnotesapp.db.base.NoteDatabase
+import mx.dev.shell.android.shellnotesapp.db.base.RealmProvider
 import mx.dev.shell.android.shellnotesapp.db.model.NoteDo
 import org.junit.After
 import org.junit.Before
@@ -24,23 +22,16 @@ class NoteDaoShould {
     @get:Rule
     var rule = ActivityScenarioRule(MainActivity::class.java)
 
-    private lateinit var database: NoteDatabase
-    private lateinit var dao: NoteDao
+    private val dao = NoteDaoImpl(RealmProvider.getDb())
 
     @Before
     fun setup() {
-        database = Room.inMemoryDatabaseBuilder(
-            ApplicationProvider.getApplicationContext(),
-            NoteDatabase::class.java
-        ).allowMainThreadQueries()
-            .build()
 
-        dao = database.noteDao()
     }
 
     @After
     fun tearDown() {
-        database.close()
+
     }
 
     @Test
@@ -58,7 +49,7 @@ class NoteDaoShould {
 
     @Test
     fun insertNoteAndGetId() = runBlocking {
-        val note1 = NoteDo("title 1", "content 1", 100L)
+        val note1 = NoteDo("title 1", "content 1", 100L, 1L)
         val id = dao.saveNote(note1)
         assert(1L == id)
     }
