@@ -22,7 +22,7 @@ class NoteDaoImpl @Inject constructor(private val db: Realm) : NoteDao {
         return db.where<NoteDo>().equalTo("id", id).findFirst()!!
     }
 
-    override fun deleteNote(id: Long): Int {
+    override suspend fun deleteNote(id: Long): Int {
         var success = 0
         db.executeTransaction {
             val noteToDelete = it.where<NoteDo>().equalTo("id", id).findFirst()!!

@@ -7,5 +7,5 @@ interface NoteDao {
     suspend fun saveNote(note: NoteDo): Long
     suspend fun getAllNotes(): List<NoteDo>
     suspend fun getNoteById(id: Long): NoteDo
-    fun deleteNote(id: Long): Int
+    suspend fun deleteNote(id: Long): Int
 }
