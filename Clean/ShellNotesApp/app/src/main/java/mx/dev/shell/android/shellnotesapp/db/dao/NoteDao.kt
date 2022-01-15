@@ -19,5 +19,5 @@ interface NoteDao {
     suspend fun getNoteById(id: Long): NoteDo
 
     @Query("DELETE FROM note WHERE id = :id")
-    fun deleteNote(id: Long): Int
+    suspend fun deleteNote(id: Long): Int
 }
